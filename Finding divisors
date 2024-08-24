@@ -1,0 +1,53 @@
+#include <iostream>
+#include<set>
+
+#define ll long long //ll takes more execution time than int
+using namespace std;
+
+
+// Finding divisors of a number in O(n) time complexity
+void linear_timecomplexity(ll n)
+{
+    cout << "Divisors: of "<<n<<":\n";
+    for (ll i = 1; i <= n; i++) // O(n)
+    {
+        if (n % i == 0)
+        {
+            cout << i << " ";
+        }
+    }
+    cout << "\n";
+}
+
+// Finding divisors of a number in square root time complexity
+void sqrt_timecomplexity(ll n)
+{
+    set<ll> s;
+    for (ll i = 1; i*i <= n; i++)//O(sqrt(n))
+        
+    {
+        if (n % i == 0)
+        {
+            s.insert(i);
+            s.insert(n / i);
+            
+        }
+        /*
+        if(i*i==n)the divisor i and n/i are the same
+        */
+    }
+     cout << "Divisors: of "<<n<<":\n";
+    for(auto i:s)
+    {
+        cout << i << " ";
+    }
+    cout << "\n";
+}
+int main()
+{
+    ll n;
+    cin >> n;
+    linear_timecomplexity(n);
+    sqrt_timecomplexity(n);
+    
+}
