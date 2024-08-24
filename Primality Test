@@ -1,0 +1,73 @@
+#include <iostream>
+#define ll long long // ll takes more execution time than int
+using namespace std;
+
+// Primality Test in sqrt(n)time complexity
+bool isprime1(ll n)
+{
+    for (ll i = 2; i * i <= n; i++) // O(sqrt(n))
+    {
+        if (n % i == 0)
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
+// Primality Test in sqrt(n/2)time complexity
+bool isprime2(ll n)
+{
+    if (n % 2 == 0)
+    {
+        return false;
+    }
+    for (ll i = 3; i * i <= n; i += 2) // O(sqrt(n)/2)
+    {
+        if (n % i == 0)
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
+// Primality Test in sqrt(n/6)time complexity
+bool isprime3(ll n)
+{
+    if(n<=1)
+        return false;
+    if(n==2 or n==3)
+        return true;
+
+    for (ll i = 5; i * i <= n; i+=6) // O(sqrt(n/6))
+    {
+        if (n % i == 0 or n%(i+2)==0)//
+        {
+            return false;
+        }
+    }
+    return true;
+    //6k+0 , 6k+2, 6k+4 are divisible by 2
+    //6k+3 is divisible by 3
+    //so checking 6k+1 and 6k+5 is enough
+}
+
+int main()
+{
+    ll n;
+    cin >> n;
+    if(isprime1(n))
+        cout << "Prime\n";
+    else
+        cout << "Not prime\n";
+    if(isprime2(n))
+        cout << "Prime\n";
+    else
+        cout << "Not prime\n";
+    if(isprime3(n))
+        cout << "Prime\n";
+    else
+        cout << "Not prime\n";
+    
+}
