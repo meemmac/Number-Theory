@@ -1,0 +1,69 @@
+#include<iostream>
+using namespace std;
+
+#define ll long long
+const ll MXX = 1e7+2;
+
+
+//O(nlog(O(logn))) Time 
+bool isPrime1[MXX];
+void sieve()
+{
+    isPrime1[0] = 0;
+    isPrime1[1] = 0;
+    for (ll i = 2; i < MXX;i++)
+    {
+        isPrime1[i] = true;
+    }
+    for (ll i = 2; i < MXX;i++)//O(logn)
+    {
+        if(isPrime1[i])
+        {
+            for (ll j = 2*i; j < MXX;j+=i)//Harmonic time complexity O(logn)
+            {                      
+                isPrime1[j] = false;
+            }
+        }
+    }
+    //As the innerloop works only for prime numbers, it can be proved that the time complexity of sieve is O(nlog(logn))
+    //And O(log(logn)) is almost equal to O(5*n) that is O(n)
+    return;
+}
+
+bitset<MXX> isPrime2;//Space Optimization, memory complexity becomes (1/8)th
+void optimized_sieve()
+{
+    isPrime2[0] = false;
+    isPrime2[1] = false;
+    for (ll i = 2; i < MXX; i++)
+    {
+        isPrime2[i] = true;
+    }
+    for (ll i = 2; i*i < MXX;i++)//square root optimization
+    {
+        if(isPrime2[i])
+        {
+            for (ll j = i*i; j < MXX;j+=i)//square root optimization
+            {                      
+                isPrime2[j] = false;
+            }
+        }
+    }
+    return;
+}
+
+int main()
+{
+    sieve();
+    optimized_sieve();
+    ll n;
+    cin >> n;
+    if(isPrime1[n])
+        cout << n << " is a Prime.\n";
+    else cout << n << " is not a Prime.\n";
+
+    if(isPrime2[n])
+        cout << n << " is a Prime.\n";
+    else cout << n << " is not a Prime.\n";
+    return 0;
+}
