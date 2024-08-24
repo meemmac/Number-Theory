@@ -1,0 +1,42 @@
+#include<iostream>
+using namespace std;
+
+#define ll long long
+const ll MXX = 1e7+2;
+
+ll spf[MXX];
+void Smallest_prime_factor()//O(log(logn))
+{
+    for (ll i = 2; i < MXX; i++)
+    {
+        spf[i] = i;
+    }
+    for (ll i = 2; i*i < MXX;i++)
+    {
+        if(spf[i]==i)
+        {
+            for (ll j = i*i; j < MXX;j+=i)
+            {                      
+              if(spf[j]==j)  spf[j] = i;
+            }
+        }
+    }
+    return;
+}
+
+int main()
+{
+    
+    Smallest_prime_factor();
+    ll n;
+    cin >> n;
+    cout << "The prime factor/s are: ";
+    while (n > 1)//Time complexity O(logn)
+    {
+        cout << spf[n];
+        n /= spf[n];
+        if(n>1)cout << " x ";
+    }
+    cout << "\n";
+    return 0;
+}
