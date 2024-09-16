@@ -30,7 +30,7 @@ int main()
     Smallest_prime_factor();
     ll n;
     cin >> n;
-    cout << "The prime factor/s are: ";
+    cout << "The prime factor/s of "<<n<<" are: ";
     while (n > 1)//Time complexity O(logn)
     {
         cout << spf[n];
