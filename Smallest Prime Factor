@@ -5,13 +5,13 @@ using namespace std;
 const ll MXX = 1e7+2;
 
 ll spf[MXX];
-void Smallest_prime_factor()//O(log(logn))
+void Smallest_prime_factor()
 {
     for (ll i = 2; i < MXX; i++)
     {
         spf[i] = i;
     }
-    for (ll i = 2; i*i < MXX;i++)
+    for (ll i = 2; i*i < MXX;i++)//O(log(logn))
     {
         if(spf[i]==i)
         {
