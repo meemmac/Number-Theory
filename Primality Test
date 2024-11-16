@@ -5,6 +5,7 @@ using namespace std;
 // Primality Test in sqrt(n)time complexity
 bool isprime1(ll n)
 {
+    if(n==1)return false;
     for (ll i = 2; i * i <= n; i++) // O(sqrt(n))
     {
         if (n % i == 0)
@@ -18,7 +19,8 @@ bool isprime1(ll n)
 // Primality Test in sqrt(n/2)time complexity
 bool isprime2(ll n)
 {
-    if (n % 2 == 0)
+    if(n==1)return false;
+    if (n % 2 == 0 and n!=2)
     {
         return false;
     }
@@ -35,11 +37,9 @@ bool isprime2(ll n)
 // Primality Test in sqrt(n/6)time complexity
 bool isprime3(ll n)
 {
-    if(n<=1)
-        return false;
-    if(n==2 or n==3)
-        return true;
-
+    if(n<=1)return false;
+    if(n%2==0 and n!=2)return false;
+    if(n%3==0 and n!=3)return false;
     for (ll i = 5; i * i <= n; i+=6) // O(sqrt(n/6))
     {
         if (n % i == 0 or n%(i+2)==0)//
@@ -69,5 +69,7 @@ int main()
         cout << "Prime\n";
     else
         cout << "Not prime\n";
+    
+        
     
 }
